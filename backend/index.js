@@ -9,11 +9,14 @@ const ratingRoutes = require('./routes/ratingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  credentials: true
+}));
 app.use(express.json());
 
 db.query('SELECT 1')
-  .then(() => console.log('✅ MySQL Connected!'))
+  .then(() => console.log(' MySQL Connected!'))
   .catch((err) => console.error('MySQL Connection Failed:', err));
 
 
